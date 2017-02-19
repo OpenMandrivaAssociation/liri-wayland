@@ -32,6 +32,7 @@ BuildRequires:	cmake
 BuildRequires:	pkgconfig(libinput)
 BuildRequires:	pkgconfig(systemd)
 BuildRequires:	pkgconfig(xcb-cursor)
+BuildRequires:	pkgconfig(xcursor)
 BuildRequires:	pkgconfig(libdrm)
 BuildRequires:	extra-cmake-modules
 BuildRequires:	%{_lib}qt5platformcompositorsupport-static-devel

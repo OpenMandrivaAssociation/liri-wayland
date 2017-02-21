@@ -28,13 +28,12 @@ BuildRequires:	cmake(Qt5QuickTest)
 BuildRequires:	cmake(Qt5QuickControls2)
 BuildRequires:	cmake(qt5xdg)
 BuildRequires:	cmake(Qt5WaylandCompositor)
-BuildRequires:	cmake
+BuildRequires:	cmake(ECM)
 BuildRequires:	pkgconfig(libinput)
 BuildRequires:	pkgconfig(systemd)
 BuildRequires:	pkgconfig(xcb-cursor)
 BuildRequires:	pkgconfig(xcursor)
 BuildRequires:	pkgconfig(libdrm)
-BuildRequires:	extra-cmake-modules
 BuildRequires:	%{_lib}qt5platformcompositorsupport-static-devel
 BuildRequires:	%{_lib}qt5eglsupport-static-devel
 BuildRequires:	%{_lib}qt5fontdatabasesupport-static-devel
@@ -50,21 +49,21 @@ Summary:        Library for %{name}
 Group:          System/Libraries
 
 %description -n %{libplatform}
-Library for %{name}
+Library for %{name}.
 
 %package -n     %{libwaylandclient}
 Summary:        Library for %{name}
 Group:          System/Libraries
 
 %description -n %{libwaylandclient}
-Library for %{name}
+Library for %{name}.
 
 %package -n     %{libwaylandserver}
 Summary:        Library for %{name}
 Group:          System/Libraries
 
 %description -n %{libwaylandserver}
-Library for %{name}
+Library for %{name}.
 
 %package -n     %{devname}
 Summary:        Development files for %{name}
@@ -76,17 +75,17 @@ Provides:       %{name}-devel = %{EVRD}
 
 %description -n %{devname}
 Components for Qt Quick applications with Material Design and Universal
-development files
+development files.
 
 %prep
 %setup -qn %{name}-%{version}-%{snapshot}
+%cmake_qt5 -DBUILD_HACK=ON -DBUILD_HACK:BOOL=ON
 
 %build
-%cmake_qt5 -DBUILD_HACK=ON -DBUILD_HACK:BOOL=ON
-%make
+%ninja -C build
 
 %install
-%makeinstall_std -C build
+%ninja_install -C build
 
 %files
 %{_libdir}/qml/Liri
